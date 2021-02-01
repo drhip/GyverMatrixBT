@@ -248,14 +248,14 @@ void parsing() {
   }
 
   // ****************** ПАРСИНГ *****************
-  if (Serial.available() > 0) {
+  if (Serial3.available() > 0) {
     char incomingByte;
     if (parseMode == TEXT) {     // если нужно принять строку
-      runningText = Serial.readString();  // принимаем всю
+      runningText = Serial3.readString();  // принимаем всю
       incomingByte = ending;              // сразу завершаем парс
       parseMode = NORMAL;
     } else {
-      incomingByte = Serial.read();        // обязательно ЧИТАЕМ входящий символ
+      incomingByte = Serial3.read();        // обязательно ЧИТАЕМ входящий символ
     }
     if (parseStarted) {                         // если приняли начальный символ (парсинг разрешён)
       if (incomingByte != divider && incomingByte != ending) {   // если это не пробел И не конец

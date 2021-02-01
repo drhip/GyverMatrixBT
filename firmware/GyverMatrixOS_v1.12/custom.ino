@@ -6,7 +6,7 @@
 #define SHOW_TEXT_ONCE 1    // показывать бегущий текст только 1 раз
 
 // подключаем внешние файлы с картинками
-//#include "bitmap2.h"
+#include "bitmap2.h"
 
 
 /*
@@ -62,71 +62,78 @@
 //  break;
 
 // не забудьте указать количество режимов для корректного переключения с последнего на первый
-#define MODES_AMOUNT 28   // количество кастомных режимов (которые переключаются сами или кнопкой)
+#define MODES_AMOUNT 33   // количество кастомных режимов (которые переключаются сами или кнопкой)
 
 void customModes() {
   switch (thisMode) {
 
-    case 0: fillString("КРАСНЫЙ", CRGB::Red);
+    case 0: madnessNoise();
       break;
-    case 1: fillString("РАДУГА", 1);
+    case 1: tetrisRoutine(); //fillString("Хутка перамога", 1);
       break;
-    case 2: fillString("RGB LED", 2);
+    case 2: ballRoutine(); //fillString("Трымайцесь!", 2);
       break;
-    case 3: madnessNoise();
+    case 3: rainbowNoise();
       break;
     case 4: cloudNoise();
       break;
-    case 5: lavaNoise();
+    case 5: fillString("BELARUS", CRGB::Red);
       break;
     case 6: plasmaNoise();
       break;
-    case 7: rainbowNoise();
+    case 7: lavaNoise();
       break;
-    case 8: rainbowStripeNoise();
+    case 8: fillString("Зiма не назаужды", 2);
       break;
-    case 9: zebraNoise();
+    case 9: clockRoutine();
       break;
     case 10: forestNoise();
       break;
-    case 11: oceanNoise();
+    case 11: flappyRoutine(); //fillString("ЖЫВЕ НОВЫ ГОД!", CRGB::Red);
       break;
-    case 12: snowRoutine();
+    case 12: fillString("Не пакiдайце ж мовы нашай беларускай, каб ня умерлi", 2);
       break;
-    case 13: sparklesRoutine();
+    case 13: rainbowStripeNoise();
       break;
     case 14: matrixRoutine();
       break;
-    case 15: starfallRoutine();
+    case 15: snakeRoutine();//fillString("Не разьбiць, не спынiць, не стрымаць!", 1);
       break;
-    case 16: ballRoutine();
+    case 16: rainbowDiagonalRoutine();
       break;
     case 17: ballsRoutine();
       break;
     case 18: rainbowRoutine();
       break;
-    case 19: rainbowDiagonalRoutine();
+    case 19: clockRoutine();
       break;
     case 20: fireRoutine();
       break;
-    case 21: snakeRoutine();
+    case 21: starfallRoutine();
       break;
-    case 22: tetrisRoutine();
+    case 22: fillString("Каго любiш?", 2);
       break;
-    case 23: mazeRoutine();
+    case 23: fillString("Люблю Беларусь", CRGB::Red); //mazeRoutine();
       break;
-    case 24: runnerRoutine();
+    case 24: fillString("Так узаемна!", 2);
       break;
-    case 25: flappyRoutine();
+    case 25: sparklesRoutine();
       break;
-    case 26: arkanoidRoutine();
+    case 26: oceanNoise();
       break;
     case 27: clockRoutine();
       break;
-
-
+    case 28: arkanoidRoutine(); //animation1();
+      break;
+    case 29: runnerRoutine();
+      break;
+    case 30: snowRoutine();
+      break;
+    case 31: fillString("З Калядамi i Новым годам!", 1);
+      break;
+    case 32: zebraNoise();
+      break;
   }
-
 }
 
 // функция загрузки картинки в матрицу. должна быть здесь, иначе не работает =)
@@ -146,23 +153,23 @@ timerMinim gifTimer(D_GIF_SPEED);
 // Внимание! Если размер матрицы не совпадает с исходным размером матрицы в скетче
 // (если вы только что  его скачали), то нужно удалить/закомментировать данные функции!
 //
-/*
+//*
   // показать картинку
   void imageRoutine1() {
-  if (loadingFlag) {
-    loadingFlag = false;
-    loadImage(frame00);
-  }
+    if (loadingFlag) {
+      loadingFlag = false;
+      loadImage(framesArray[0]);
+    }
   }
 
   void animation1() {
-  if (gifTimer.isReady()) {
-    frameNum++;
-    if (frameNum >= sizeof(framesArray)) frameNum = 0;
-    loadImage(framesArray[frameNum]);
+    if (gifTimer.isReady()) {
+      frameNum++;
+      if (frameNum >= sizeof(framesArray)) frameNum = 0;
+      loadImage(framesArray[frameNum]);
+    }
   }
-  }
-*/
+//*/
 
 // ********************* ОСНОВНОЙ ЦИКЛ РЕЖИМОВ *******************
 #if (SMOOTH_CHANGE == 1)
